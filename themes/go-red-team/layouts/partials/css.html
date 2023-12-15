@@ -1,0 +1,24 @@
+{{/*  Iterate thru your page frontmatter for css
+{{- $css := slice }}
+{{- $csslocal := false }}
+{{- range $.Params.css }}
+  {{- $css = $css | append (resources.Get .link ) }}
+  {{- $csslocal = true }}
+{{- end }}
+
+<!-- Create the .css really used -->
+{{- if $csslocal }}
+  {{ $nomcss := printf "css/style_%s.min.css" .Params.url }}
+  {{- $styles := $css | resources.Concat $nomcss }}
+  {{- if (eq (getenv "HUGO_ENV") "production") -}}
+    {{- $styles = $styles | minify | fingerprint "sha384" }}
+  {{- end }}
+  <link rel="stylesheet" href="{{ $styles.RelPermalink }}" {{- if (eq (getenv "HUGO_ENV") "production") -}}integrity="{{ $styles.Data.Integrity }}"{{ end }}>
+{{- end }}  */}}
+
+
+{{ if .Params.css }}
+    {{ range .Params.css }}
+        <link rel="stylesheet" href="{{ .link }}">
+    {{ end }}
+{{ end }}

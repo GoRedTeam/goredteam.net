@@ -1,0 +1,23 @@
+# JetBrains
+.idea/
+
+# Node.js files
+node_modules/
+themes/**.node_modules/
+npm-debug.log
+package-lock.json
+resources/
+
+# Hugo files
+public/
+.hugo_build.lock
+go.mod
+go.sum
+hugo_stats.json
+
+# VS Code
+.dccache
+.history/
+.vscode/
+
+node_modules

@@ -1,0 +1,26 @@
+<footer class="bg-black">
+	<div class="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
+		<nav class="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
+			{{ range .Site.Menus.footer }}
+			<div class="px-5 py-2">
+				<a href="{{ .URL }}" class="text-base text-gray-400 hover:text-gray-500">{{ .Name }}</a>
+			</div>
+			{{ end }}
+
+		</nav>
+
+
+
+
+		{{/* <div class="mt-8 flex justify-center space-x-6">
+			{{ range .Site.Menus.social }}
+			{{ $name := printf "%s %s" "fab" (replace (.Name | path.Base) (.Name | path.Ext) "") }}
+			<a href="{{ .URL }}" target="_blank" class="text-gray-400 hover:text-gray-500">
+				<span class="sr-only">{{ .Name }}</span>
+				{{ partial "icon" $name }}
+			</a>
+			{{ end }}
+		</div> */}}
+		<p class="mt-8 text-center text-base text-gray-50">&copy; {{ replace .Site.Copyright "{year}" now.Year }} - {{.Site.Title}}, LLC. All rights reserved.</p>
+	</div>
+</footer>

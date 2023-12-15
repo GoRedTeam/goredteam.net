@@ -1,0 +1,25 @@
+{{ $posts := where site.RegularPages "Section" "posts"}}
+
+<!-- Read Next Begin -->
+    {{ if or .Next .Prev }}
+    <div class="bg-black py-5">
+        <div class="flex align-top justify-center">
+            <h2 class="not-prose text-xl mr-6 font-bold text-white">Read next</h2>
+        </div>
+        <div class="mx-auto justify-center flex mt-8">
+        <div class="flex">
+            <div class="flex mx-auto grid grid-cols-6">
+            {{ with $posts.Next . }}
+                <a class="flex items-center justify-center py-3 px-5 text-red font-medium rounded-none border border-red border-solid hover:bg-red hover:text-white active:bg-red outline-none focus:outline-none transition-all" href="{{ .Permalink | relURL }}">Next Post</a>
+            {{ end }}
+            </div class="flex">
+            <div class="flex mx-auto grid grid-cols-6 col-end-11">
+            {{ with $posts.Prev . }}
+                <a class="flex col-end-11 items-center justify-center py-3 px-5 text-red font-medium rounded-none border border-red border-solid hover:bg-red hover:text-white active:bg-red outline-none focus:outline-none transition-all" href="{{ .Permalink | relURL}}">Previous Post</a>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+<!-- Read Next End -->

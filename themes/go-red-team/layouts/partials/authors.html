@@ -1,0 +1,13 @@
+<address class="max-w-lg flex items-center mb-6 mt-6 not-italic">
+    {{- range .Params.authors}}
+        {{- with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
+        <div class="inline-flex items-center mr-3 text-sm text-white">
+            <img class="not-prose mr-8 w-16 h-16 rounded-full" src="{{ .Params.photo }}" alt="{{ .Params.name }}">
+            <div>
+                <a href="{{ .Permalink }}" rel="author" class="not-prose text-xl mr-6 font-bold text-white hover:text-red">{{ .Params.name }}</a>
+                {{/* <p class="text-sm font-medium text-gray-400 my-0">{{ .Params.position }}</p> */}}
+            </div>
+        </div>
+        {{ end }}
+    {{ end }}
+</address>

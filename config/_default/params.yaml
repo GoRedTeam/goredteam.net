@@ -1,0 +1,14 @@
+description: 'Learn about Red Teaming, Penetration Testing, Physical Security and more with Go Red Team.'
+
+mod_icons:
+  enableAutoTitle: true
+  enableStats: false
+  defaultLoader: svg-inline
+  defaultLoaderShortcode: svg-inline
+  iconBaseClass: icon h-6 w-6
+
+# staticman:
+#   endpoint: "https://grt-staticman-e809a6f2fee8.herokuapp.com/v2/entry"
+#   username: "go-red-team"
+#   repository: "goredteam.net"
+#   branch: "main"

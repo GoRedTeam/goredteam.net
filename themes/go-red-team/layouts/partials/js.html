@@ -1,0 +1,23 @@
+{{/*  <!-- Iterate thru your page frontmatter -->
+{{- $js := slice }}
+{{- $jslocal := false }}
+{{- range $.Params.js }}
+  {{- $js = $js | append (resources.Get .link ) }}
+  {{- $jslocal = true }}
+{{- end }}
+
+<!-- Create the .js really used -->
+{{- if $jslocal }}
+  {{ $nomscript := printf "js/script_%s.min.js" .Params.url }}
+  {{- $scripts := $js | resources.Concat $nomscript }}
+  {{- if (eq (getenv "HUGO_ENV") "production") -}}
+    {{- $scripts = $scripts | minify | fingerprint "sha384" }}
+  {{- end }}
+  <script src="{{ $scripts.RelPermalink }}" {{- if (eq (getenv "HUGO_ENV") "production") -}}integrity="{{ $scripts.Data.Integrity }}"{{ end }} defer ></script>
+{{- end }}  */}}
+
+{{ if .Params.js }}
+    {{ range .Params.js }}
+        <script src="{{ .link }}"></script>
+    {{ end }}
+{{ end }}

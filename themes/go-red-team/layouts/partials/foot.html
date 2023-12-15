@@ -1,0 +1,7 @@
+{{/*  {{ $prismjs := resources.Get "js/prism.js" | resources.Minify }}
+    {{- if (eq (getenv "HUGO_ENV") "production") -}}
+        {{ $prismjs = $prismjs | fingerprint "md5" }}
+    {{ end }}
+    <script src="{{ $prismjs.RelPermalink }}"></script>  */}}
+
+{{ partial "js.html" . }}

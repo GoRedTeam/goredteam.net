@@ -1,0 +1,51 @@
+    {{- $vs := .Site.Params.staticman }}
+    <div class="w-full px-3 mb-2 mt-6">
+      <div class="flex justify-center">
+        <h2 class="text-lg text-white font-medium mb-2">Leave a comment</h2>
+      </div>
+      <div class="bg-darkgray p-4 rounded-none mx-auto">
+      <form action="{{ .Site.Params.staticman.endpoint }}/{{ .Site.Params.staticman.username }}/{{ .Site.Params.staticman.repository }}/{{ .Site.Params.staticman.branch }}/comments" method="POST" class="gap-y-6 sm:grid-cols-2 sm:gap-x-8">
+        <input type="hidden" name="options[slug]" value="{{ md5 .File.Path }}">
+        <input type="hidden" name="fields[replyThread]">
+        <input type="hidden" name="fields[replyId]">
+        <input type="hidden" name="fields[replyName]">
+
+        {{- with $vs.reCaptcha -}}
+        <input name="options[reCaptcha][siteKey]" type="hidden" value="{{ .sitekey }}">
+        <input name="options[reCaptcha][secret]" type="hidden" value="{{ .secret }}">
+        {{- end -}}
+
+        <div>
+          <label for="first-name" class="block text-sm font-medium text-white">Name</label>
+          <div class="mt-1">
+            <input type="text" name="fields[name]" id="first-name" autocomplete="given-name" class="bg-darkgray text-white py-3 px-4 block w-full shadow-sm focus:ring-red focus:border-red border-gray-300 rounded-none">
+          </div>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="email" class="block text-sm font-medium text-white">Email</label>
+          <div class="mt-1">
+            <input id="email" name="fields[email]" type="email" autocomplete="email" class="bg-darkgray text-white py-3 px-4 block w-full shadow-sm focus:ring-red focus:border-red border-gray-300 rounded-none">
+          </div>
+        </div>
+        <div class="sm:col-span-2">
+          <label for="message" class="block text-sm font-medium text-white">Comment</label>
+          <div class="mt-1">
+            <textarea id="message" name="fields[comment]" rows="4" class="bg-darkgray text-white py-3 px-4 block w-full shadow-sm focus:ring-red focus:border-red border border-gray-300 rounded-none"></textarea>
+          </div>
+        </div>
+
+        {{- with $vs.reCaptcha -}}
+        <div class="g-recaptcha" data-sitekey="{{ .sitekey }}" data-callback="enableSubmitComment"></div>
+        <script type="text/javascript">
+          function enableSubmitComment(){
+            document.getElementById("submitComment").disabled = false;
+          }
+        </script>
+        <script async src="https://www.google.com/recaptcha/api.js"></script>
+        {{- end -}}
+
+        <div class="my-2">
+          <button type="submit" class="w-full inline-flex items-center justify-center py-3 px-5 text-red font-medium rounded-none border border-red border-solid hover:bg-red hover:text-white active:bg-red outline-none focus:outline-none transition-all" {{- if $vs.reCaptcha }} disabled {{- end }}>Submit</button>
+        </div>
+      </form>
+    </div>

@@ -1,0 +1,44 @@
+{{ define "main" }}
+<div class="px-6 mx-auto mb-16 ">
+    <div class="mb-6 not-format">
+
+
+        <section class="w-full bg-cover bg-center" style="height:24rem; background-image: url('{{ .Params.headerImage }}');">
+            <div class="flex items-center justify-center h-full w-full bg-darkgray bg-opacity-80">
+                <div class="text-center">
+                    <h1 class="text-white text-4xl font-semibold uppercase">{{ .Title }}</h1>
+                    <h2 class="text-white mt-2 text-md font-light">{{ .Params.subtitle }}</h2>
+
+                    {{ partial "postinfo.html" .}}
+
+                    <div class="flex mt-4 justify-center space-x-1">
+                        {{ partial "tags.html" . }}
+                    </div>
+
+                    <div class="flex mx-auto justify-center mt-8">
+                        {{ partial "authors.html" . }}
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <article class="mx-auto max-w-[75%] text-white justify-self-center prose-lg prose-headings:text-white prose-pre-bg:bg-darkgray">
+        {{ .Content }}
+    </article>
+
+    <section>
+      {{ partial "readnext" . }}
+    </section>
+
+    <section>
+      {{ partial "seealso" . }}
+    </section>
+
+    <section>
+      {{ partial "comments" . }}
+    </section>
+</div>
+{{ end }}

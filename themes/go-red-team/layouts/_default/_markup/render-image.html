@@ -1,0 +1,5 @@
+<figure class="mx-auto w-2/3 h-2/3">
+    <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" {{ with .Title}} title="{{ . }}"{{ end }} />
+    <figcaption>{{.Title}}</figcaption>
+</figure>
+  

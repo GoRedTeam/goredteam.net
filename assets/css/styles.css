@@ -1,0 +1,51 @@
+/* TailwindCSS base styles */
+/* see https://tailwindcss.com/docs/functions-and-directives#tailwind */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+
+
+
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
+
+/* Site Specific */
+/* put site specific css styles here using the @layer directive */
+/* see https://tailwindcss.com/docs/functions-and-directives#layer */
+
+
+@layer base {
+    /* For Webkit-based browsers (Chrome, Safari and Opera) */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    
+     /* For IE, Edge and Firefox */
+     .scrollbar-hide {
+         -ms-overflow-style: none;  /* IE and Edge */
+         scrollbar-width: none;  /* Firefox */
+     }
+     ol {
+	     list-style-type: decimal;
+	     margin: 0px;
+     }
+     ul {
+	     list-style-type: disc;
+	     margin: 0px;
+     }
+     [type='checkbox'], [type='radio'] {
+	     color: #ff0000;
+     }
+}
+
+@layer components {
+    .icon {
+        width: 24px;
+        height: 24px;
+        /* Font-Awesome recommends -.125em vertical alignment (https://fontawesome.com/how-to-use/on-the-web/advanced/svg-symbols) 
+           However, I mostly find myself using the following which looks better for some icons: */
+        fill: currentColor;
+    }    
+}

@@ -1,0 +1,8 @@
+    {{ $_hugo_config := `{ "version": 1 }` }}
+    <aside class="admonition admonition-note">
+        <div class="not-prose absolute admonition-icon note-icon">
+            {{partial "svg/exclamation.svg" (dict "size" "10px" ) }}
+        </div>
+        <h6 class="relative not-prose first admonition-title note-title">Note</h6>
+        <div class="not-prose admonition-content">{{- .Inner -}}</div>
+    </aside>

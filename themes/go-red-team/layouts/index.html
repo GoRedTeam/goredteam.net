@@ -1,0 +1,19 @@
+{{ define "main" }}
+
+<section class="relative flex items-center justify-center h-screen overflow-hidden bg-fixed bg-center bg-cover">
+    <overlay class="absolute inset-0 bg-black opacity-90 " style="z-index:10;"></overlay>
+    <video autoplay loop muted class="absolute w-auto min-w-full min-h-full max-w-none" style="z-index:9;">
+        <source src="https://www.pexels.com/video/6962343/download/?fps=25.0&h=1080&w=1920" type="video/mp4">
+    </video>
+    <div class="relative z-20 flex flex-col items-center justify-center w-full h-full text-center" style="z-index:11;">
+        <h1 class="text-5xl font-medium text-white">Welcome to the Blog</h1>
+        <p class="mt-4 text-xl text-white">[<span class="text-red">root</span>@localhost] :~$ <span id="console"></span></p>
+        <div class="mt-3 rounded-none shadow ">
+            <a href="/posts" class="flex items-center justify-center py-3 px-5 text-red font-medium rounded-none border border-red border-solid hover:bg-red hover:text-white active:bg-red outline-none focus:outline-none transition-all">View Blog Posts</a>
+        </div>
+    </div>
+</section>
+
+{{/*  {{ partial "newsletter.html" . }}  */}}
+
+{{ end }}

@@ -1,0 +1,52 @@
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ block "title" . }}
+    {{- .Title }} - {{ .Site.Title -}}
+    {{ end }}</title>
+    {{- if .Description }}
+    <meta name="description" content="{{ .Description }}" />
+    {{ end -}}
+    {{- if .Keywords }}
+    <meta name="keywords" content="{{ delimit .Keywords "," }}" />
+    {{ end -}}
+    {{- if .Params.Author }}
+    <meta name="author" content="{{ .Params.Author}}" />
+    {{ end -}}
+    {{ hugo.Generator }}
+
+    {{ template "_internal/twitter_cards.html" . }}
+    {{ template "_internal/opengraph.html" . }}
+
+    
+    {{- $styles := resources.Get "css/styles.css" | postCSS (dict "config" "./assets/css/postcss.config.js" "inlineImports" true) -}}
+    
+    {{- if .Site.IsServer }}
+    <link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+    {{ else }}
+    {{- $styles := $styles| minify | fingerprint | resources.PostProcess -}}
+    <link rel="stylesheet" href="{{ $styles.Permalink }}" integrity="{{ $styles.Data.Integrity }}">
+    {{ end -}}
+    
+    {{ partial "css.html" . }}
+    
+    {{/*  {{ $admonitiontailwind := resources.Get "css/admonition-tailwind.css" | resources.Minify }}
+    {{- if (eq (getenv "HUGO_ENV") "production") -}}
+        {{ $admonitiontailwind = $admonitiontailwind | fingerprint "md5" }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $admonitiontailwind.RelPermalink }}">
+
+    {{ $admonitionclassic := resources.Get "css/classic.css" | resources.Minify }}
+    {{- if (eq (getenv "HUGO_ENV") "production") -}}
+        {{ $admonitionclassic = $admonitionclassic | fingerprint "md5" }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $admonitionclassic.RelPermalink }}">
+
+    {{ $prismcss := resources.Get "css/prism.css" | resources.Minify }}
+    {{- if (eq (getenv "HUGO_ENV") "production") -}}
+        {{ $prismcss = $prismcss | fingerprint "md5" }}
+    {{ end }}
+    <link rel="stylesheet" href="{{ $prismcss.RelPermalink }}">  */}}
+
+
+</head>

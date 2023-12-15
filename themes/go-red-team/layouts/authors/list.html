@@ -1,0 +1,62 @@
+{{ define "main" }}
+
+<div class="w-full mb-16 text-white justify-self-center prose-lg  prose-headings:text-white  prose-pre-bg:bg-darkgray">
+
+    <section class="not-format flex bg-darkgray prose-a:text-red" style="height:200px;">
+        <div class="flex items-center text-center text-left px-8 w-1/2">
+            <img class="w-32 h-32 rounded-full float-left mr-4 my-0 mt-6" src="{{ .Params.photo }}" alt="{{ .Params.name }}'s photo">
+            <div>
+                <h2 class="font-extrabold leading-tight text-white mb-0 mt-6 text-4xl">{{ .Params.name }}</h2>
+                {{- with .Params.twitter }}
+                <div class="mt-2 flex space-x-2">
+                    <p class="text-gray-400 my-0">
+                        <a href="https://twitter.com/{{ substr . 1 }}" target="_blank">
+                            Follow {{ $.Params.name }} on Twitter
+                        </a>
+                    </p>
+                </div>
+                    {{ end}}
+            </div>
+        </div>
+        <div class="block w-1/2" style="clip-path:polygon(10% 0, 100% 0%, 100% 100%, 0 100%)">
+            <div class="h-full object-cover" style="background-image: url(https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&h=200&q=80)">
+                <div class="h-full bg-darkgray opacity-80"></div>
+            </div>
+        </div>
+    </section>
+    
+
+    <article class="container justify-center mx-auto text-white">
+        {{ .Content }}
+    </article>
+        
+    <div class="container justify-center mx-auto text-white">
+        <h2 class="text-2xl font-bold mb-4">Articles</h2>
+        {{ $dateFormat := default "Jan 2" (index .Site.Params "date_format") }}
+        {{ $.Scratch.Set "lastYear" ""}}
+        {{ $year := .Date.Year }}
+        {{ $lastYear := $.Scratch.Get "lastYear"}}
+        {{ $paginator := .Paginate (where .Data.Pages "Section" "posts") 12 }}
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="mt-12 mx-auto grid gap-6 grid-cols-4 max-w-none">
+                {{ range $paginator.Pages}}
+                    {{partial "post" .}}
+                {{ end }}
+            </div>
+            <nav class="text-right">
+                <ul class="pagination">
+                    {{ template "_internal/pagination.html" . }}
+                </ul>
+            </nav><!--end pagination-->
+        </div>
+        
+        {{/*  <ul>
+            {{ range .Data.Pages }}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
+        </ul>  */}}
+    </div>
+</div>
+
+{{ end }}

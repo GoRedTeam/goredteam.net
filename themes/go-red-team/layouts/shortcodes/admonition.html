@@ -1,0 +1,6 @@
+<div class="not-prose admonition-{{ .Get "type" | lower }}">
+    <i class="not-prose admonition-icon admonition-{{ .Get "type" | lower }}"></i>
+    <p class="not-prose first admonition-title">{{ .Get "title" }}</p>
+    <p class="not-prose">{{ string .Inner | markdownify }}</p>
+</div>
+

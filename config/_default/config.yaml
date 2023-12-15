@@ -1,0 +1,57 @@
+title: 'Go Red Team'
+theme: 'go-red-team'
+baseURL: 'https://goredteam.net'
+LanguageCode: 'en'
+copyright: "Copyright 2020-{year}"
+
+outputs:
+  home: ["HTML", "JSON"]
+  section: ["HTML","JSON"]
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+blackfriday:
+  smartypants: false
+
+# disableKinds:
+#   - taxonomyTerm
+
+build:
+  writeStats: true
+
+cascade:
+  - _target:
+      path: /post.md
+      kind: page
+    _build:
+      render: never
+      list: never
+  - _target:
+      path: /README.*
+      kind: page
+    _build:
+      render: never
+      list: never
+
+
+taxonomies:
+  tag: "tags"
+  category: "categories"
+  author: "authors"
+  # event: "event"
+  training: "training"
+
+permalinks:
+  posts: /posts/:year/:month/:day/:title
+  pages: /:title
+  # event: /event/:year-:month-:day-:title
+  training: /training/:title
+
+
+# module:
+#   imports:
+#     - path: github.com/0xDezzy/icons
+#     - path: github.com/FortAwesome/Font-Awesome

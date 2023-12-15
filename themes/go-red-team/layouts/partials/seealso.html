@@ -1,0 +1,20 @@
+<!-- See Also Begin -->
+{{ $related := .Site.RegularPages.RelatedIndices . "tags" "date" | first 3 }}
+{{ with $related }}
+<div class="bg-black pt-8 pb-20 px-4">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex mx-auto justify-center mt-8">
+            <h2 class="not-prose text-xl mr-6 font-bold text-white">Related Posts</h2>
+        </div>
+        <div class="mt-12 mx-auto grid gap-6 grid-cols-4 max-w-none">
+            {{ range .}}
+                {{partial "post" .}}
+            {{ end }}
+        </div>
+    </div>
+</div>
+{{ end }}
+
+<!-- See Also End -->
+
+

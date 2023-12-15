@@ -1,0 +1,8 @@
+{{ $_hugo_config := `{ "version": 1 }` }}
+<aside class="admonition admonition-tip">
+    <div class="not-prose absolute admonition-icon tip-icon">
+        {{partial "svg/lightbulb.svg" (dict "size" "10px" ) }}
+    </div>
+    <h6 class="relative not-prose first admonition-title">Tip</h6>
+    <div class="not-prose admonition-content">{{- .Inner -}}</div>
+</aside>

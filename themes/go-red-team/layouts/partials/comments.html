@@ -1,0 +1,103 @@
+{{ if and .Site.Params.staticman (not (or .Site.Params.disable_comments .Params.disable_comments)) }}
+<section id="comments">
+  {{ if .Site.Params.staticman }}
+  <div class="flex mx-auto justify-center mt-8">
+    <h3 class="flex justify-center text-xl font-semibold text-white font-semibold p-1">Comments</h3>
+  </div>
+
+<div class="w-full bg-black rounded-none p-1 md:p-3">
+  <div class="flex flex-col gap-5 m-3">
+    {{ $comments := site.Data.comments }}
+    {{- $entryId := md5 .File.Path -}}
+    {{ if $comments }}
+      {{- $comments := index $comments $entryId -}}
+      {{- if not $comments }}
+        <p class="text-white mt-2">Be the first to leave a comment!</p>
+      {{- else }}
+        {{- range $comments }}
+          {{ if not .replyThread }}
+            {{ $.Scratch.Set "threadID" ._id }}
+            <!-- Comment Container -->
+            <div id="{{ ._id }}" class="flex w-full bg-darkgray justify-between border-l-8 border-red rounded-none">
+              <div class="p-3">
+                <div class="flex gap-3 items-center">
+                  <img src="https://www.gravatar.com/avatar/{{ .email }}?s=100" class="object-cover w-10 h-10 rounded-full">
+                  <a href="#{{ ._id }}"><div class="comment_heading pale" data-time="{{ .date }}"></div></a>
+                  <h3 class="text-white font-bold">
+                    {{ .name }}
+                    <br>
+                    <span class="text-sm text-white font-normal">{{ .date }}</span>
+                  </h3>
+                </div>
+                <p class="text-white mt-2">
+                  {{ markdownify .comment }}
+                </p>
+                <div class="">{{ ._id }}</div>
+                <button class="text-right text-red">Reply</button>
+              </div>
+            </div>
+            <!-- END Comment Container -->
+
+            {{ range $comments }}
+            {{ if eq .replyThread (index $comments $.replyID) }}
+              <div id="{{ ._id }}" class="flex w-full bg-darkgray justify-between border-l-8 border-red rounded-none ml-8">
+                <div class="p-3">
+                  <div class="flex gap-3 items-center">
+                    <img src="https://www.gravatar.com/avatar/{{ .email }}?s=100" class="object-cover w-10 h-10 rounded-full">
+                    <a href="#{{ ._id }}"><div class="comment_heading pale" data-time="{{ .date }}"></div></a>
+                    <h3 class="text-white font-bold">
+                      {{ .name }}
+                      <br>
+                      <span class="text-sm text-white font-normal">{{ .date }}</span>
+                    </h3>
+                  </div>
+                  <p class="text-white mt-2">
+                    {{ markdownify .comment }}
+                  </p>
+                  <div class="">{{ ._id }}</div>
+                  <button class="text-right text-red">Reply</button>
+                </div>
+              </div>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{end}}
+  </div>
+</div>
+
+
+  {{/* <div class="w-full bg-black rounded-none p-1 md:p-3">
+      <div class="flex flex-col gap-5 m-3">
+                <!-- Comment Container -->
+                <div>
+                    <div id={{ ._id }} class="flex w-full bg-darkgray justify-between border-l-8 border-red rounded-none">
+                        <div class="p-3">
+                            <div class="flex gap-3 items-center">
+                                <img src="https://www.gravatar.com/avatar/{{ .email }}?s=100" class="object-cover w-10 h-10 rounded-full ">
+                                <a href="#{{ ._id }}"><div class="comment_heading pale" data-time="{{ .date }}"></div></a>
+                                <h3 class="text-white font-bold">
+                                    {{ .name }}
+                                    <br>
+                                    <span class="text-sm text-white font-normal">{{ .date  }}</span>
+                                </h3>
+                            </div>
+                            <p class="text-white mt-2">
+                                {{ markdownify .comment }}
+                            </p>
+                            <div class="">{{ ._id }}</div>
+                            <button class="text-right text-red">Reply</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Comment Container  -->
+
+      </div> */}}
+
+      {{ partial "comment-form" . }}
+
+  </div>
+  {{ end }}
+</section>
+{{ end }}

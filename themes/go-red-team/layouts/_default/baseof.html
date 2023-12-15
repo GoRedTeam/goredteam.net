@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang='{{ .Site.LanguageCode }}'>
+{{ partial "head.html" . }}
+
+<body class="scrollbar-hide bg-black h-screen justify-between">
+    <div class="sticky fixed top-0">
+    {{/*  {{- partial "dev/dev-tools.html" . -}}  */}}
+    {{- partial "navigation.html" . -}}
+    {{/*  {{- partial "header.html" . -}}  */}}
+    <main class="w-screen">
+        {{- block "main" . }}{{- end }}
+    </main>
+
+    {{- partial "footer.html" . -}}
+    </div>
+    {{/*  Load Icon Data last  */}}
+    {{/* {{ partial "icon-data" . }} */}}
+</body>
+
+{{ partial "foot.html" . }}
+</html>

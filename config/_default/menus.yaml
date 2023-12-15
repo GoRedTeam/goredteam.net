@@ -1,0 +1,61 @@
+main:
+  # - identifier: "about"
+  #   name: "About"
+  #   url: "/about/"
+  #   weight: 110
+  - identifier: "posts"
+    name: "Blog"
+    url: "/posts/"
+    weight: 120
+  # - identifier: "training"
+  #   name: "Training"
+  #   url: "/training/"
+  #   weight: 130
+  # - identifier: "events"
+  #   name: "Events"
+  #   url: "/events/"
+  #   weight: 140
+  # - identifier: "contact"
+  #   name: "Contact"
+  #   url: "/contact"
+  #   weight: 150
+
+social:
+  - name: "twitter"
+    url: "https://twitter.com/0xDezzy"
+  - name: "gitlab"
+    url: "https://gitlab.com/go-red-team/"
+  - name: "youtube"
+    url: "https://youtube.com/@goredteam"
+  - name: "twitch"
+    url: "https://twitch.tv/goredteam"
+
+
+
+footer:
+  # - identifier: "about"
+  #   name: "About"
+  #   url: "/about/"
+  #   weight: 110
+  - identifier: "posts"
+    name: "Blog"
+    url: "/posts/"
+    weight: 120
+  # - identifier: "training"
+  #   name: "Training"
+  #   url: "/training/"
+  #   weight: 130
+  # - identifier: "events"
+  #   name: "Events"
+  #   url: "/events/"
+  #   weight: 140
+  # - identifier: "contact"
+  #   name: "Contact"
+  #   url: "/contact"
+  #   weight: 150
+  # - identifier: "privacy"
+  #   name: "Privacy Policy"
+  #   url: "/privacy-policy"
+  #   weight: 160
+
+
